@@ -222,7 +222,9 @@ def nimbus():
     (https://github.com/nathanmarz/storm/wiki/Setting-up-a-Storm-cluster)
     """
     cppaths = [STORM_DIR + "/log4j", STORM_DIR + "/conf"]
-    childopts = confvalue("nimbus.childopts", cppaths) + " -Dlogfile.name=nimbus.log -Dlog4j.configuration=storm.log.properties"
+    childopts = confvalue("nimbus.childopts", cppaths) \
+        + " -Dlogfile.name=nimbus.log" \
+        + " -Dlog4j.configuration=storm.log.properties"
     exec_storm_class(
         "backtype.storm.daemon.nimbus",
         jvmtype="-server",
@@ -240,7 +242,9 @@ def supervisor():
     (https://github.com/nathanmarz/storm/wiki/Setting-up-a-Storm-cluster)
     """
     cppaths = [STORM_DIR + "/log4j", STORM_DIR + "/conf"]
-    childopts = confvalue("supervisor.childopts", cppaths) + " -Dlogfile.name=supervisor.log -Dlog4j.configuration=storm.log.properties"
+    childopts = confvalue("supervisor.childopts", cppaths) \
+            + " -Dlogfile.name=supervisor.log" \
+            + "-Dlog4j.configuration=storm.log.properties"
     exec_storm_class(
         "backtype.storm.daemon.supervisor",
         jvmtype="-server",
@@ -259,7 +263,8 @@ def ui():
     (https://github.com/nathanmarz/storm/wiki/Setting-up-a-Storm-cluster)
     """
     cppaths = [STORM_DIR + "/log4j", STORM_DIR + "/conf"]
-    childopts = confvalue("ui.childopts", cppaths) + " -Dlogfile.name=ui.log -Dlog4j.configuration=storm.log.properties"
+    childopts = confvalue("ui.childopts", cppaths) \
+        + " -Dlogfile.name=ui.log -Dlog4j.configuration=storm.log.properties"
     exec_storm_class(
         "backtype.storm.ui.core",
         jvmtype="-server",
